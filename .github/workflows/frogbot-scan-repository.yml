@@ -18,6 +18,18 @@ jobs:
         # The repository scanning will be triggered periodically on the following branches.
         branch: ["master"]
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+  
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'  # 设置你需要的 Python 版本
+  
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libjpeg-dev build-essential python3-dev
           
       - uses: jfrog/frogbot@v2
         env:
